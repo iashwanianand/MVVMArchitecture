@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="personViewModel"
+            type="com.example.mvvmarchitecture.viewmodel.PersonViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".view.activity.PersonActivity">
+
+        <EditText
+            android:id="@+id/et_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:hint="@string/name"
+            android:text="@={personViewModel.name}" />
+
+        <EditText
+            android:id="@+id/et_email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/et_name"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:hint="@string/email"
+            android:text="@={personViewModel.email}" />
+
+        <EditText
+            android:id="@+id/et_mobile"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/et_email"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:hint="@string/phone"
+            android:text="@={personViewModel.phone}" />
+
+        <com.google.android.material.button.MaterialButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/et_mobile"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:text="@{personViewModel.saveOrUpdate}"
+            android:onClick="@{() -> personViewModel.saveOrUpdateClick()}" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_clearordelete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/et_mobile"
+            android:layout_marginEnd="20dp"
+            android:layout_marginTop="20dp"
+            android:text="@{personViewModel.clearAllOrDelete}"
+            android:onClick="@{() -> personViewModel.clearOrDeleteAll()}" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/person_recyclerview"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_margin="15dp"
+            app:layout_constraintTop_toBottomOf="@+id/btn_clearordelete"
+            app:layout_constraintBottom_toBottomOf="parent"
+            tools:listitem="@layout/list_items" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>
